@@ -1,0 +1,40 @@
+@import "./vendor";
+@import "./form";
+
+.-ml-780 {
+    margin-left: -780px;
+}
+
+.btn-primary {
+    @apply rounded-md py-3 px-4 leading-none bg-gray-800 hover:bg-gray-700 text-white transition-all ease-in-out duration-200;
+}
+.btn-secondary {
+    @apply rounded-md py-3 px-4 leading-none bg-gray-100 hover:bg-gray-200 text-gray-800 transition-all ease-in-out duration-200;
+}
+.btn-danger {
+    @apply rounded-md py-3 px-4 leading-none bg-red-500 hover:bg-red-400 text-red-50 transition-all ease-in-out duration-200;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+
+.hide-number-control {
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+}
