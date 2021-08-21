@@ -11,7 +11,7 @@ import Toast, { POSITION } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import '@/css/app.scss'
 
-axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
+axios.defaults.baseURL = import.meta.env.VITE_APP_API_BASE_URL
 axios.defaults.withCredentials = true;
 
 store.dispatch('user/authenticate').then(() => {

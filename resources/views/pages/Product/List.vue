@@ -58,6 +58,7 @@
 <script>
 import axios from 'axios'
 import { PlusIcon } from '@heroicons/vue/outline'
+import { useToast } from "vue-toastification"
 import AppLayout from '@/views/layouts/AppLayout.vue'
 import Spin from '@/views/components/Spin.vue'
 import ProductCard from '@/views/components/Products/ProductCard.vue'
@@ -138,6 +139,7 @@ export default {
         },
         handleSaved() {
             this.closeForm()
+            this.toast.success('Product saved successfully!')
             this.getProducts()
         },
         handleDeleted() {
@@ -145,6 +147,12 @@ export default {
             this.getProducts()
         }
     },
+    setup() {
+        const toast = useToast()
+        return {
+            toast
+        }
+    }
 }
 
 </script>

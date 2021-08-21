@@ -88,7 +88,7 @@
                 </div>
                 <div>
                     <button @click.prevent="handleCancel" type="button" class="btn-secondary mr-4">Cancel</button>
-                    <button type="submit" class="btn-primary">{{ editCustomerId ? 'Update Product' : 'Create Product'}}</button>
+                    <button type="submit" class="btn-primary">{{ editCustomerId ? 'Update Customer' : 'Create Customer'}}</button>
                 </div>
             </div>
         </Form>

@@ -35,7 +35,7 @@ export default {
     actions: {
         authenticate ({ commit }) {
             const uninterceptedAxiosInstance = axios.create()
-            uninterceptedAxiosInstance.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
+            uninterceptedAxiosInstance.defaults.baseURL = import.meta.env.VITE_APP_API_BASE_URL
             uninterceptedAxiosInstance.defaults.withCredentials = true;
             return uninterceptedAxiosInstance.get('/api/user').then((response) => {
                 commit('SET_AUTHENTICATED', true)

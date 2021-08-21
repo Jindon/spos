@@ -383,6 +383,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { Field, Form, ErrorMessage } from "vee-validate";
 import * as yup from 'yup';
+import { useToast } from "vue-toastification"
 import Datepicker from 'vue3-datepicker'
 import axios from 'axios'
 import moment from 'moment'
@@ -578,17 +579,18 @@ export default {
         onSubmit(values) {
             this.loading = true
             values.invoice_date = moment(this.date).format('YYYY-MM-DD')
-            console.log(values)
             if(this.editInvoice) {
                 axios.patch(`/api/invoices/${this.editInvoice.id}`, values).then((response) => {
                     this.loading = false
                     this.createdInvoice = response.data.data
+                    this.toast.success('Invoice updated successfully!')
                     this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
                 }).catch((e) => { this.loading = false; console.log(e) })
             } else {
                 axios.post('/api/invoices', values).then((response) => {
                     this.loading = false
                     this.createdInvoice = response.data.data
+                    this.toast.success('Invoice created successfully!')
                     this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
                 }).catch((e) => { this.loading = false; console.log(e) })
             }
@@ -703,10 +705,12 @@ export default {
     setup() {
         const store = useStore()
         const router = useRouter()
+        const toast = useToast()
         // console.log(store.getters['user/authenticated'])
 
         return {
             router,
+            toast
         }
     }
 }
