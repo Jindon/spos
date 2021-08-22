@@ -1,9 +1,10 @@
 #!/bin/sh
-set -e
 
 echo "Deploying application ..."
 
-sudo chmod -R 775 storage
+sudo chown -R $USER:www-data storage bootstrap/cache
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R $USER:www-data storage/app/public/tmp
 
 # Enter maintenance mode
 (php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
