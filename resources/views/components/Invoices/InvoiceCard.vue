@@ -11,12 +11,12 @@
                 </div>
 
                 <div class="md:w-9/12 flex justify-between">
-                    <div class="md:px-4 py-2 md:w-6/12 hover:border-r group-hover:border-blue-500 leading-none">
+                    <div class="md:px-4 py-2 hover:border-r group-hover:border-blue-500 leading-none">
                         <p class="text-lg font-semibold">{{ invoice.customer_name }}</p>
                         <p class="text-xs font-bold text-gray-500 mt-1">GSTIN: <span class="text-gray-500">{{ invoice.customer_gstin ?? '----' }}</span></p>
                     </div>
 
-                    <div class="md:px-4 py-2 md:w-3/12">
+                    <div class="md:px-4 py-2 md:w-1/3">
                         <p class="text-xs font-bold text-gray-500">Invoice total</p>
                         <div class="font-bold text-lg text-gray-500">
                             ₹ {{ invoice.total }}

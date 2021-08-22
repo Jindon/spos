@@ -24,7 +24,7 @@
             </div>
         </template>
         <Spin :spinning="loading">
-            <div v-if="invoices.length" class="overflow-x-auto">
+            <div v-if="invoices.length">
                 <div v-for="invoice in invoices" :key="invoice.id">
                     <InvoiceCard :invoice="invoice" @click.prevent="selectInvoice(invoice)"/>
                     <hr class="bg-gray-100">
