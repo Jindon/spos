@@ -7,7 +7,7 @@ sudo chmod -R 775 storage bootstrap/cache
 sudo chown -R $USER:www-data storage/app/public/tmp
 
 # Enter maintenance mode
-(php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
+php artisan down
     # Update codebase
     git pull origin main
 
