@@ -12,6 +12,10 @@ echo "Deploying application ..."
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader
 
+    # Install node dependencies and build
+    yarn
+    yarn build
+
     # Migrate database
     php artisan migrate --force
     php artisan db:seed --class=StateSeeder
