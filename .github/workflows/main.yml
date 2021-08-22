@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: '14'
     - run: yarn
-    - run: yarn rsw:build
+    - run: yarn build
     - name: Commit built assets
       run: |
         git config --local user.email "action@github.com"
