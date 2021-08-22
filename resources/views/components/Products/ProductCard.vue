@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="px-4 py-1 w-3/12 hover:border-r group-hover:border-blue-500 leading-none">
-                    <p class="text-lg font-semibold">₹ {{ product.unit_price }}</p>
+                    <p class="text-lg font-semibold">₹ {{ parseFloat(product.unit_price) }}</p>
                     <p class="text-xs text-gray-500 mt-1">
                         <template v-if="product.inclusive == 1">
                             <span class="px-1 rounded-md bg-blue-50 text-xs text-blue-500 font-semibold">Tax inclusive</span>
@@ -24,7 +24,7 @@
                 <div class="px-4 py-1 w-3/12">
                     <p class="text-xs font-bold text-gray-500">Tax</p>
                     <div class="font-bold text-lg text-gray-500">
-                        {{ product.tax }} %
+                        {{ parseFloat(product.tax) }}%
                     </div>
                 </div>
             </div>

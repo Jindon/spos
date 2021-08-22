@@ -1,9 +1,9 @@
 <template>
     <AppLayout maxWidth="max-w-4xl">
         <template #header>
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col md:flex-row justify-between md:items-center">
                 <h2 class="text-xl md:text-3xl font-bold leading-none">Customer</h2>
-                <div class="w-1/2 flex items-center justify-between space-x-2">
+                <div class="md:w-1/2 flex items-center justify-between space-x-2">
                     <div class="flex-1">
                         <div class="text-xs font-semibold text-gray-600">Search customers</div>
                         <input class="p-2 rounded-md bg-gray-50 w-full" type="text" placeholder="Customer name / gstin"
@@ -36,7 +36,7 @@
                 <Modal
                     v-model="showForm"
                     @cancel="closeForm"
-                    class="ml-48"
+                    class="md:ml-48"
                 >
                     <div class="px-4">
                         <p class="text-lg font-bold">{{ selectedCustomerId ? 'Update product' : 'Add a product'}}</p>

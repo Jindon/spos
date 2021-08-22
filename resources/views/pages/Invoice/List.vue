@@ -1,28 +1,30 @@
 <template>
     <AppLayout>
         <template #header>
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col md:flex-row justify-between md:items-center">
                 <h2 class="text-xl md:text-3xl font-bold leading-none">Invoices</h2>
-                <div class="w-2/3 flex items-center justify-between space-x-2">
+                <div class="md:w-2/3 flex flex-col md:flex-row md:items-center justify-between space-x-2">
                     <div class="flex-1">
                         <div class="text-xs font-semibold text-gray-600">Search invoices</div>
                         <input class="p-2 rounded-md bg-gray-50 w-full" type="text" placeholder="Invoice no / customer name"
                             v-debounce:350ms="updateSearch"
                         >
                     </div>
-                    <div class="w-36">
-                        <div class="text-xs font-semibold text-gray-600">From date</div>
-                        <datepicker v-model="fromDate" input-format="dd-MM-yyyy"/>
-                    </div>
-                    <div class="w-36">
-                        <div class="text-xs font-semibold text-gray-600">To date</div>
-                        <datepicker v-model="toDate" input-format="dd-MM-yyyy"/>
+                    <div class="flex items-center space-x-4">
+                        <div class="md:w-36">
+                            <div class="text-xs font-semibold text-gray-600">From date</div>
+                            <datepicker v-model="fromDate" input-format="dd-MM-yyyy"/>
+                        </div>
+                        <div class="md:w-36">
+                            <div class="text-xs font-semibold text-gray-600">To date</div>
+                            <datepicker v-model="toDate" input-format="dd-MM-yyyy"/>
+                        </div>
                     </div>
                 </div>
             </div>
         </template>
         <Spin :spinning="loading">
-            <div v-if="invoices.length">
+            <div v-if="invoices.length" class="overflow-x-auto">
                 <div v-for="invoice in invoices" :key="invoice.id">
                     <InvoiceCard :invoice="invoice" @click.prevent="selectInvoice(invoice)"/>
                     <hr class="bg-gray-100">
