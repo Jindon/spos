@@ -28,7 +28,7 @@
             </div>
             <div v-else class="bg-gray-50 rounded-md">
                 <div class="flex items-center justify-center w-full h-full py-32">
-                    <p class="text-gray-400">No Invoices found</p>
+                    <p class="text-gray-400">No Customers found</p>
                 </div>
             </div>
 
