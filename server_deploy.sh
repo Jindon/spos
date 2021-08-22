@@ -16,8 +16,8 @@ php artisan down
     composer install --no-interaction --prefer-dist --optimize-autoloader
 
     # Install node dependencies and build
-    yarn
-    yarn build
+    npm install
+    npm run build
 
     # Migrate database
     php artisan migrate --force
