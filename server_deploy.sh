@@ -10,6 +10,7 @@ sudo chown -R $USER:www-data storage/app/public/tmp
 php artisan down
     # Update codebase
     git pull origin main
+    git reset --hard origin/main
 
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader
