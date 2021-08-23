@@ -27,6 +27,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $this->authorize('view', $product);
         return new ProductResource($product);
     }
 
@@ -39,6 +40,7 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product, SaveProduct $saveProduct)
     {
+        $this->authorize('update', $product);
         $attributes = $request->validated();
         $product = $saveProduct->handle($attributes, $product);
         return new ProductResource($product);
@@ -46,6 +48,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product);
         try {
             $product->delete();
             return response()->json([
