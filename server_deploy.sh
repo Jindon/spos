@@ -9,14 +9,11 @@ sudo chmod -R 775 storage bootstrap/cache
 # Enter maintenance mode
 php artisan down
     # Update codebase
-    git pull origin main
+    git fetch origin deploy
+    git reset --hard origin/deploy
 
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader
-
-    # Install node dependencies and build
-    npm install
-    npm run build
 
     # Migrate database
     php artisan migrate --force
