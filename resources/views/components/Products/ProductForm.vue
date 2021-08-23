@@ -142,7 +142,7 @@ export default {
     methods: {
         getProductdata(productId) {
             this.loading = true
-            axios.get(`api/products/${productId}`).then((response) => {
+            axios.get(`/api/products/${productId}`).then((response) => {
                 this.loading = false
                 const product = response.data.data
                 this.$refs.productForm.setFieldValue('name', product.name)

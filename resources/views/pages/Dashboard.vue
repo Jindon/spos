@@ -155,7 +155,7 @@ export default {
         moment,
         getReports() {
             this.loading = true
-            let url = 'api/dashboard'
+            let url = '/api/dashboard'
             if(this.fromDate && !this.toDate) {
                 url += `?filter[from_date]=${this.getFormattedDate(this.fromDate)}`
             }

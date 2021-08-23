@@ -513,7 +513,7 @@ export default {
         },
         getProducts() {
             const search = this.search ? `&filter[search]=${this.search}` : ''
-            axios.get(`api/products?limit=12` + search).then((response) => {
+            axios.get(`/api/products?limit=12` + search).then((response) => {
                 this.products = response.data.data
             }).catch((error) => {
                 console.log(error.response)
@@ -521,7 +521,7 @@ export default {
         },
         getCustomers() {
             const search = this.searchCustomer ? `&filter[search]=${this.searchCustomer}` : ''
-            axios.get(`api/customers?limit=12` + search).then((response) => {
+            axios.get(`/api/customers?limit=12` + search).then((response) => {
                 this.customers = response.data.data
             }).catch((error) => {
                 console.log(error.response)
@@ -555,10 +555,10 @@ export default {
         },
         getInitialData() {
             this.loading = true
-            axios.get('api/states').then(({ data }) => {
+            axios.get('/api/states').then(({ data }) => {
                 this.states = data.data
                 this.$refs.invoiceForm.setFieldValue(`state_id`, 14);
-                axios.get('api/invoice-count').then(({ data }) => {
+                axios.get('/api/invoice-count').then(({ data }) => {
                     this.loading = false
                     const invoiceCount = data.count + 1
                     this.$refs.invoiceForm.setFieldValue(`invoice_no`, moment().format('yyyy/MM') + `-${invoiceCount.toString().padStart(4, 0)}`);

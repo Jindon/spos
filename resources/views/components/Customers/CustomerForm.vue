@@ -159,7 +159,7 @@ export default {
     methods: {
         getCustomerData(customerId) {
             this.loading = true
-            axios.get(`api/customers/${customerId}`).then((response) => {
+            axios.get(`/api/customers/${customerId}`).then((response) => {
                 this.loading = false
                 const customer = response.data.data
                 this.$refs.customerForm.setFieldValue('name', customer.name)
