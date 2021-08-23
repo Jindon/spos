@@ -1,48 +1,57 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from '@/scripts/store'
 
+import Login from '@/views/pages/Auth/Login.vue'
+import Dashboard from '@/views/pages/Dashboard.vue'
+import Settings from '@/views/pages/Settings.vue'
+import InvoiceList from '@/views/pages/Invoice/List.vue'
+import InvoiceCreate from '@/views/pages/Invoice/Create.vue'
+import InvoiceEdit from '@/views/pages/Invoice/Edit.vue'
+import CustomerList from '@/views/pages/Customer/List.vue'
+import ProductList from '@/views/pages/Product/List.vue'
+
 const routes = [
     {
         name: 'login',
         path: '/auth/login',
-        component: () => import('@/views/pages/Auth/Login.vue')
+        component: Login
     },
     {
         name: 'dashboard',
         path: '/dashboard',
-        component: () => import('@/views/pages/Dashboard.vue')
+        component: Dashboard
     },
     {
         name: 'settings',
         path: '/settings',
-        component: () => import('@/views/pages/Settings.vue')
+        component: Settings
     },
     {
         name: 'invoices.list',
         path: '/invoices',
-        component: () => import('@/views/pages/Invoice/List.vue'),
+        component: InvoiceList,
         props: true
     },
     {
         name: 'invoices.create',
         path: '/invoices/create',
-        component: () => import('@/views/pages/Invoice/Create.vue')
+        component: InvoiceCreate
     },
     {
         name: 'invoices.edit',
         path: '/invoices/update/:invoiceId',
-        component: () => import('@/views/pages/Invoice/Edit.vue'),
+        component: InvoiceEdit,
         props: true
     },
     {
         name: 'customers.list',
         path: '/customers',
-        component: () => import('@/views/pages/Customer/List.vue')
+        component: CustomerList
     },
     {
         name: 'products.list',
         path: '/products',
-        component: () => import('@/views/pages/Product/List.vue')
+        component: ProductList
     },
 ]
 
