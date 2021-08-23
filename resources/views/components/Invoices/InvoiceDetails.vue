@@ -58,7 +58,7 @@
                             <td class="p-1 border-r border-b border-gray-200">{{ item.quantity }}</td>
                             <td class="p-1 border-r border-b border-gray-200">₹{{ item.unit_price }}</td>
                             <td class="p-1 border-r border-b border-gray-200">₹{{ item.taxable_amount }}</td>
-                            <td class="p-1 border-r border-b border-gray-200">₹{{ item.tax }}</td>
+                            <td class="p-1 border-r border-b border-gray-200">{{ item.tax }}</td>
                             <td class="p-1 border-r border-b border-gray-200">₹{{ item.tax_amount }}</td>
                             <td class="p-1 px-4 border-b border-gray-200">₹{{ item.total }}</td>
                         </tr>
