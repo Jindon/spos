@@ -30,7 +30,6 @@
         "vue-toastification": "^2.0.0-rc.1",
         "vue3-datepicker": "^0.2.5",
         "vuex": "^4.0.2",
-        "yup": "^0.32.9",
-        "yup-phone": "^1.2.19"
+        "yup": "^0.32.9"
     }
 }
