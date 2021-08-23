@@ -21,7 +21,7 @@ php artisan down
 
     # Migrate database
     php artisan migrate --force
-    php artisan db:seed --class=StateSeeder
+    php artisan db:seed --class=StateSeeder --force
 
     # Note: If you're using queue workers, this is the place to restart them.
     # ...

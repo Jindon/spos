@@ -77,7 +77,6 @@ import { UserIcon, LockClosedIcon } from '@heroicons/vue/outline'
 import { useToast } from "vue-toastification"
 import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
-import "yup-phone";
 
 import axios from 'axios'
 import FormGroup from '@/views/components/FormGroup.vue'
@@ -85,6 +84,7 @@ import Spin from '@/views/components/Spin.vue'
 
 const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
 const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/
+const phoneRegex = /^[6-9]\d{9}$/
 
 export default defineComponent({
     components: {
@@ -113,11 +113,11 @@ export default defineComponent({
             address: yup.string().required(),
             phone: yup.lazy(() => yup.string().when(['phone'], {
                 is: (phone) => phone?.length > 0,
-                then: yup.string().phone()
+                then: yup.string().matches(phoneRegex, 'Must be a valid phone number')
             }).nullable()),
             alt_phone: yup.lazy(() => yup.string().when(['alt_phone'], {
                 is: (alt_phone) => alt_phone?.length > 0,
-                then: yup.string().phone()
+                then: yup.string().matches(phoneRegex, 'Must be a valid phone number')
             }).nullable()),
             email: yup.string().nullable().email(),
             gstin: yup.lazy(() => yup.string().when(['gstin'], {
