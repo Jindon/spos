@@ -4,13 +4,12 @@ echo "Deploying application ..."
 
 sudo chown -R $USER:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
-sudo chown -R $USER:www-data storage/app/public/tmp
+# sudo chown -R $USER:www-data storage/app/public/tmp
 
 # Enter maintenance mode
 php artisan down
     # Update codebase
     git pull origin main
-    git reset --hard origin/main
 
     # Install dependencies based on lock file
     composer install --no-interaction --prefer-dist --optimize-autoloader
