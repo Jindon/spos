@@ -25,12 +25,12 @@ const routes = [
     },
     {
         name: 'invoices.create',
-        path: '/invoices/create',
+        path: '/invoices/add',
         component: () => import('@/views/pages/Invoice/Create.vue')
     },
     {
         name: 'invoices.edit',
-        path: '/invoices/edit/:invoiceId',
+        path: '/invoices/modify/:invoiceId',
         component: () => import('@/views/pages/Invoice/Edit.vue'),
         props: true
     },
