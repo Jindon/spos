@@ -83,7 +83,7 @@ export default {
         if(this.$route.query.page) {
             this.currentPage = parseInt(this.$route.query.page)
         }
-        axios.get('api/states').then(({ data }) => {
+        axios.get('/api/states').then(({ data }) => {
             this.states = data.data
         }).catch((error) => { this.loading = false; console.log(error) })
 

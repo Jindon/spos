@@ -32,7 +32,7 @@ export default {
     methods: {
         getInvoice(invoiceId) {
             this.loading = true
-            axios.get(`api/invoices/${invoiceId}`).then((response) => {
+            axios.get(`/api/invoices/${invoiceId}`).then((response) => {
                 this.loading = false
                 this.invoice = response.data.data
             })
