@@ -3,7 +3,7 @@
         v-slot="{ params, close }"
         v-bind="$attrs"
         :esc-to-close="true"
-        classes="m-auto max-w-2xl mt-8"
+        classes="m-auto max-w-2xl mt-16"
         content-class="relative flex flex-col max-h-full mx-4 p-4 border dark:border-gray-800 rounded bg-white dark:bg-gray-900"
     >
         <span class="mr-8 text-2xl font-bold">
