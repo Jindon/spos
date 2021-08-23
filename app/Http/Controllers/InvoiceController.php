@@ -41,6 +41,7 @@ class InvoiceController extends Controller
 
     public function show(Invoice $invoice)
     {
+        $this->authorize('view', $invoice);
         return new InvoiceResource($invoice);
     }
 
@@ -54,6 +55,7 @@ class InvoiceController extends Controller
 
     public function update(InvoiceRequest $request, Invoice $invoice, SaveInvoice $saveInvoice)
     {
+        $this->authorize('update', $invoice);
         $attributes = $request->validated();
         $invoice = $saveInvoice->handle($attributes, $invoice);
 
@@ -62,6 +64,7 @@ class InvoiceController extends Controller
 
     public function destroy(Invoice $invoice)
     {
+        $this->authorize('delete', $invoice);
         try {
             $invoice->invoiceItems()->delete();
             $invoice->delete();
