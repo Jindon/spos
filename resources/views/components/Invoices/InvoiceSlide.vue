@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="fixed inset-0 md:ml-52 min-h-full overflow-y-auto bg-white border-t-4 border-blue-500 transition-all ease-in-out duration-300 print:border-t-0"
+        <div class="fixed inset-0 md:ml-52 print:m-2 min-h-full overflow-y-auto print:overflow-y-hidden bg-white border-t-4 border-blue-500 transition-all ease-in-out duration-300 print:border-t-0"
             :class="show ? '' : '-mt-10xl'"
         >
             <div class="max-w-6xl mx-auto print:max-w-100 px-4 md:px-0">

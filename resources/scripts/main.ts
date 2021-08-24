@@ -5,6 +5,7 @@ import App from '@/views/App.vue'
 import axios from 'axios'
 import vueDebounce from 'vue-debounce'
 import { vfmPlugin } from 'vue-final-modal'
+import  VueHtmlToPaper from '@/scripts/plugins/VueHtmlToPaper'
 
 import Toast, { POSITION } from "vue-toastification";
 
@@ -18,6 +19,21 @@ store.dispatch('user/authenticate').then(() => {
     const app = createApp(App)
     app.use(router)
     app.use(store)
+
+    app.use(VueHtmlToPaper, {
+        name: '_blank',
+        specs: [
+          'fullscreen=yes',
+          'titlebar=yes',
+          'scrollbars=yes'
+        ],
+        styles: [
+        //   'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css',
+        ],
+        timeout: 500,
+        autoClose: true,
+        windowTitle: window.document.title, // override the window title
+    })
 
     app.use(vueDebounce, {
         defaultTime: '350ms'

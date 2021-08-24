@@ -1,9 +1,9 @@
 <template>
     <AppLayout>
         <template #header>
-            <div class="flex flex-col md:flex-row justify-between md:items-center">
-                <h2 class="text-xl md:text-3xl font-bold leading-none">Invoices</h2>
-                <div class="md:w-2/3 flex flex-col md:flex-row md:items-center justify-between space-x-2">
+            <div class="flex flex-col justify-between">
+                <h2 class="text-xl md:text-3xl font-bold leading-none mb-2">Invoices</h2>
+                <div class="flex flex-col md:flex-row md:items-center justify-between space-x-2">
                     <div class="flex-1">
                         <div class="text-xs font-semibold text-gray-600">Search invoices</div>
                         <input class="p-2 rounded-md bg-gray-50 w-full" type="text" placeholder="Invoice no / customer name"
@@ -19,6 +19,14 @@
                             <div class="text-xs font-semibold text-gray-600">To date</div>
                             <datepicker v-model="toDate" input-format="dd-MM-yyyy"/>
                         </div>
+                    </div>
+                    <div class="md:w-36">
+                        <div class="text-xs font-semibold text-gray-600">Customer type</div>
+                        <select v-model="customerType" class="form-control w-full">
+                            <option value="all">All</option>
+                            <option value="walk_in">Walk-In</option>
+                            <option value="b2b">B2B</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -92,6 +100,7 @@ export default {
             fromDate: moment().startOf('month').toDate(),
             toDate: moment().toDate(),
             search: '',
+            customerType: 'all',
             loading: false,
             selectedInvoice: null,
             showInvoice: false,
@@ -108,6 +117,9 @@ export default {
             this.getInvoices()
         },
         search: function (val) {
+            this.getInvoices()
+        },
+        customerType: function (val) {
             this.getInvoices()
         }
     },
@@ -131,6 +143,9 @@ export default {
             } else {
                 url += `&filter[from_date]=${fromDate}&filter[to_date]=${toDate}`
             }
+            if (this.customerType) {
+                url += `&filter[customer_type]=${this.customerType}`
+            }
             axios.get(url).then((response) => {
                 this.loading = false
                 this.invoices = response.data.data
@@ -138,6 +153,8 @@ export default {
                 if(this.currentPage > 1 && !this.invoices.length) {
                     this.changePage(1)
                 }
+            }).catch((error) => {
+                console.log(error)
             })
         },
         selectInvoice(invoice) {

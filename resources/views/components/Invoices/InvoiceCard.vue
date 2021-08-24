@@ -12,8 +12,13 @@
 
                 <div class="md:w-9/12 flex justify-between">
                     <div class="md:px-4 py-2 hover:border-r group-hover:border-blue-500 leading-none">
-                        <p class="text-lg font-semibold">{{ invoice.customer_name }}</p>
-                        <p class="text-xs font-bold text-gray-500 mt-1">GSTIN: <span class="text-gray-500">{{ invoice.customer_gstin ?? '----' }}</span></p>
+                        <div v-if="invoice.walk_in_customer">
+                            <p class="text-lg font-semibold">Walk-In / Retail Customer</p>
+                        </div>
+                        <div v-else>
+                            <p class="text-lg font-semibold">{{ invoice.customer_name }}</p>
+                            <p class="text-xs font-bold text-gray-500 mt-1">GSTIN: <span class="text-gray-500">{{ invoice.customer_gstin ?? '----' }}</span></p>
+                        </div>
                     </div>
 
                     <div class="md:px-4 py-2 md:w-1/3">

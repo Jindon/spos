@@ -7,6 +7,7 @@ import Settings from '@/views/pages/Settings.vue'
 import InvoiceList from '@/views/pages/Invoice/List.vue'
 import InvoiceCreate from '@/views/pages/Invoice/Create.vue'
 import InvoiceEdit from '@/views/pages/Invoice/Edit.vue'
+import InvoicePrint from '@/views/pages/Invoice/Print.vue'
 import CustomerList from '@/views/pages/Customer/List.vue'
 import ProductList from '@/views/pages/Product/List.vue'
 
@@ -41,6 +42,12 @@ const routes = [
         name: 'invoices.edit',
         path: '/invoices/update/:invoiceId',
         component: InvoiceEdit,
+        props: true
+    },
+    {
+        name: 'invoices.print',
+        path: '/invoices/print/:invoiceId',
+        component: InvoicePrint,
         props: true
     },
     {

@@ -18,6 +18,20 @@
 }
 
 
+.hide-number-control {
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
 .login-btn {
     @apply w-full px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-md text-gray-100 leading-none transition-all ease-in-out duration-200 disabled:opacity-60 disabled:cursor-not-allowed;
 }

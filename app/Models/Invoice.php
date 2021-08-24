@@ -43,6 +43,16 @@ class Invoice extends Model
             ->orWhere('customer_name', 'LIKE', '%' . $search . '%');
     }
 
+    public function scopeCustomerType(Builder $query, $customer_type)
+    {
+        $types = [
+            'all' => [0,1],
+            'walk_in' => [1],
+            'b2b' => [0]
+        ];
+        return $query->whereIn('walk_in_customer', $types[$customer_type]);
+    }
+
     public function getAdditionalTaxInfoAttribute()
     {
         return $this->invoiceItems()

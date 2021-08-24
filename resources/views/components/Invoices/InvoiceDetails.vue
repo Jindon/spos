@@ -2,30 +2,16 @@
     <Spin :spinning="loading">
         <div v-if="invoice" id="invoiceDetails">
             <div class="flex justify-between border border-gray-200 border-b-0">
-                <div class="w-1/2 px-4 py-3 border-r border-gray-200">
+                <div class="w-2/3 px-4 py-3 border-r border-gray-200">
                     <h1 class="text-xl font-bold">{{ shop.name }}</h1>
                     <p class="text-sm font-bold text-gray-500 uppercase tracking-wide">{{ shop.gstin }}</p>
-                </div>
-
-                <div class="w-1/2 px-4 py-3 leading-none">
                     <p>{{ shop.address }}</p>
                     <p>{{ shop.state.name }}</p>
                     <div class="flex items-center mt-2"><PhoneIcon class="w-4 h-4 mr-2" /> {{ shop.phone }} <span v-if="shop.alt_phone">| {{ shop.alt_phone }}</span></div>
                     <div class="flex items-center mt-1"><MailIcon class="w-4 h-4 mr-2" /> {{ shop.email }}</div>
                 </div>
-            </div>
 
-            <div class="flex justify-between border border-gray-200 border-b-0">
-                <div class="w-1/2 px-4 py-3 border-r border-gray-200">
-                    <p class="text-sm font-semibold text-gray-700">Issued to</p>
-                    <p class="text-lg font-bold">{{ invoice.customer_name }}</p>
-                    <p>{{ invoice.customer_address }}</p>
-                    <p v-if="invoice.state">{{ invoice.state.name }}</p>
-                    <p v-if="invoice.customer_gstin" class="text-sm font-bold text-gray-500 tracking-wide uppercase">GSTIN: {{ invoice.customer_gstin }}</p>
-                    <p v-if="invoice.customer_pan" class="text-sm font-bold text-gray-500 tracking-wide uppercase">PAN: {{ invoice.customer_pan }}</p>
-                </div>
-
-                <div class="w-1/2 px-4 py-3">
+                <div class="w-1/3 px-4 py-3 leading-none">
                     <p class="text-sm font-semibold text-gray-700">Invoice no</p>
                     <p class="font-bold text-lg mt-1">{{ invoice.invoice_no }}</p>
                     <p class="text-sm font-semibold text-gray-700 mt-2">Invoice date</p>
@@ -33,6 +19,26 @@
                         <CalendarIcon class="w-4 h-4 mr-2" />
                         {{ moment(invoice.invoice_date).format('DD-MM-YYYY') }}
                     </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between border border-gray-200 border-b-0">
+                <div class="w-2/3 px-4 py-3 border-r border-gray-200">
+                    <p class="text-sm font-semibold text-gray-700">Issued to</p>
+                    <div v-if="invoice.walk_in_customer">
+                        <p class="text-lg font-bold">Walk-In / Retail Customer</p>
+                    </div>
+                    <div v-else>
+                        <p class="text-lg font-bold">{{ invoice.customer_name }}</p>
+                        <p>{{ invoice.customer_address }}</p>
+                        <p v-if="invoice.customer_gstin" class="text-sm font-bold text-gray-500 tracking-wide uppercase">GSTIN: {{ invoice.customer_gstin }}</p>
+                        <p v-if="invoice.customer_pan" class="text-sm font-bold text-gray-500 tracking-wide uppercase">PAN: {{ invoice.customer_pan }}</p>
+                    </div>
+                </div>
+
+                <div class="w-1/3 px-4 py-3">
+                    <p class="text-sm font-semibold text-gray-700">State sold to</p>
+                    <p>{{ invoice.state.name }}</p>
                 </div>
             </div>
 
@@ -187,6 +193,7 @@ import axios from 'axios'
 import numWords from 'num-words'
 import { PhoneIcon, MailIcon, CalendarIcon } from '@heroicons/vue/outline'
 import Spin from '@/views/components/Spin.vue'
+
 export default {
     emits: ['close'],
     props: {
@@ -209,7 +216,7 @@ export default {
     },
     methods: {
         print() {
-            window.print()
+            this.$router.push({ name: 'invoices.print', params: { invoiceId: this.invoice.id } })
         },
         edit() {
             this.$router.push({ name: 'invoices.edit', params: { invoiceId: this.invoice.id } })
