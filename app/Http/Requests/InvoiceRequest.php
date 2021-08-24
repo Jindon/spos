@@ -17,6 +17,7 @@ class InvoiceRequest extends FormRequest
         $data = [
             'state_id' => ['nullable', 'exists:states,id'],
             'invoice_date' => ['required', 'date'],
+            'walk_in_customer' => ['boolean'],
             'customer_name' => ['nullable'],
             'customer_address' => ['nullable'],
             'customer_gstin' => ['nullable'],

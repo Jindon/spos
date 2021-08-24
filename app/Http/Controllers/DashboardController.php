@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
-use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -47,6 +46,7 @@ class DashboardController extends Controller
                 AllowedFilter::scope('to_date'),
             ])
             ->where('shop_id', $shopId)
+            ->where('walk_in_customer', 0)
             ->select('customer_name', 'customer_gstin', 'customer_pan')
             ->selectRaw("SUM(total) as sold_total, SUM(tax) as tax_total")
             ->orderByDesc('sold_total')

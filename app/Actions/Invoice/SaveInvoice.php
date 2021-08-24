@@ -50,6 +50,13 @@ class SaveInvoice
         $taxAmount = $itemsCollection->sum('tax_amount');
         $cgst = $sgst = round($taxAmount / 2, 2);
 
+        if ($attributes['walk_in_customer']) {
+            $invoiceData['customer_name'] = null;
+            $invoiceData['customer_address'] = null;
+            $invoiceData['customer_gstin'] = null;
+            $invoiceData['customer_pan'] = null;
+        }
+
         return array_merge($invoiceData, [
             'total' => $itemsCollection->sum('total') - (float) $attributes['discount'],
             'taxable' => $itemsCollection->sum('taxable_amount'),

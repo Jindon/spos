@@ -33,6 +33,7 @@ class InvoiceController extends Controller
                 AllowedFilter::scope('from_date'),
                 AllowedFilter::scope('to_date'),
                 AllowedFilter::scope('search'),
+                AllowedFilter::scope('customer_type'),
             ])
             ->latest()
             ->paginate(request('limit', 10));
