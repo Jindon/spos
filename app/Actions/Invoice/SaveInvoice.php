@@ -50,7 +50,7 @@ class SaveInvoice
         $taxAmount = $itemsCollection->sum('tax_amount');
         $cgst = $sgst = round($taxAmount / 2, 2);
 
-        if ($attributes['walk_in_customer']) {
+        if ($attributes['retail']) {
             $invoiceData['customer_name'] = null;
             $invoiceData['customer_address'] = null;
             $invoiceData['customer_gstin'] = null;

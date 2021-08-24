@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $shopId = auth()->user()->defaultShop()->id;
         $report = [
             'most_sold_items' => $this->getMostSoldItems($shopId),
-            'invoice_count' => $this->getInvoiceCount($shopId),
+            'invoice_counts' => $this->getInvoiceCounts($shopId),
             'top_customers' => $this->getTopCustomers($shopId)
         ];
 
@@ -46,7 +46,7 @@ class DashboardController extends Controller
                 AllowedFilter::scope('to_date'),
             ])
             ->where('shop_id', $shopId)
-            ->where('walk_in_customer', 0)
+            ->where('retail', 0)
             ->select('customer_name', 'customer_gstin', 'customer_pan')
             ->selectRaw("SUM(total) as sold_total, SUM(tax) as tax_total")
             ->orderByDesc('sold_total')
@@ -55,14 +55,20 @@ class DashboardController extends Controller
             ->get();
     }
 
-    public function getInvoiceCount($shopId)
+    public function getInvoiceCounts($shopId)
     {
-        return QueryBuilder::for(Invoice::class)
+        $query = QueryBuilder::for(Invoice::class)
             ->allowedFilters([
                 AllowedFilter::scope('from_date'),
                 AllowedFilter::scope('to_date'),
-            ])
-            ->where('shop_id', $shopId)
-            ->count();
+            ])->where('shop_id', $shopId);
+
+        $query1 = clone $query;
+        $query2 = clone $query;
+        return [
+                'total' => $query->count(),
+                'retail' => $query1->where('retail', 1)->count(),
+                'b2b' => $query2->where('retail', '=', 0)->count(),
+            ];
     }
 }

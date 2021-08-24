@@ -1,6 +1,16 @@
 <template>
     <Spin :spinning="loading">
         <div v-if="invoice" id="invoiceDetails">
+            <div v-if="!isPrint" class="mb-4 print:hidden flex justify-between items-center">
+                <div>
+                    <button class="btn-primary-sm" @click="print">Print</button>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button class="btn-secondary-sm" @click="edit">Edit</button>
+                    <button class="btn-danger-sm" @click="destroy">Delete</button>
+                </div>
+            </div>
+
             <div class="flex justify-between border border-gray-200 border-b-0">
                 <div class="w-2/3 px-4 py-3 border-r border-gray-200">
                     <h1 class="text-xl font-bold">{{ shop.name }}</h1>
@@ -25,8 +35,8 @@
             <div class="flex justify-between border border-gray-200 border-b-0">
                 <div class="w-2/3 px-4 py-3 border-r border-gray-200">
                     <p class="text-sm font-semibold text-gray-700">Issued to</p>
-                    <div v-if="invoice.walk_in_customer">
-                        <p class="text-lg font-bold">Walk-In / Retail Customer</p>
+                    <div v-if="invoice.retail">
+                        <p class="text-lg font-bold">Retail Customer</p>
                     </div>
                     <div v-else>
                         <p class="text-lg font-bold">{{ invoice.customer_name }}</p>
@@ -48,7 +58,7 @@
                     <thead>
                         <tr class="text-left text-sm bg-gray-100">
                             <th class="w-10 p-1 px-4 border-r border-b border-gray-200">#</th>
-                            <th class="w-4/12 p-1 border-r border-b border-gray-200">Item Name</th>
+                            <th class="w-3/12 p-1 border-r border-b border-gray-200">Item Name</th>
                             <th class="w-auto p-1 border-r border-b border-gray-200">Quantity</th>
                             <th class="w-auto p-1 border-r border-b border-gray-200">Unit price</th>
                             <th class="w-auto p-1 border-r border-b border-gray-200">Taxable</th>
@@ -173,15 +183,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-6 print:hidden flex justify-between items-center">
-                <div>
-                    <button class="btn-primary" @click="print">Print</button>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button class="btn-secondary" @click="edit">Edit</button>
-                    <button class="btn-danger" @click="destroy">Delete</button>
-                </div>
-            </div>
         </div>
     </Spin>
 </template>
@@ -201,7 +202,11 @@ export default {
             type: Object,
             required: true,
             default: null
-        }
+        },
+        isPrint: {
+            type: Boolean,
+            default: false
+        },
     },
     components: {
         Spin,

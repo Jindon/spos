@@ -9,29 +9,29 @@
                             <div>
                                 <Field
                                     v-slot="{field, value}"
-                                    :id="`walk_in_customer`"
-                                    :name="`walk_in_customer`"
+                                    :id="`retail`"
+                                    :name="`retail`"
                                     type="checkbox"
                                     :unchecked-value="0"
                                     :value="1"
                                 >
-                                    <label for="walk_in_customer" class="flex items-center space-x-2">
+                                    <label for="retail" class="flex items-center space-x-2">
                                         <input type="checkbox"
                                             v-bind="field"
                                             :value="1"
-                                            :name="`walk_in_customer`"
-                                            :id="`walk_in_customer`"
+                                            :name="`retail`"
+                                            :id="`retail`"
                                             :checked="value"
                                             class="w-5 h-5"
-                                        > <span class="leading-none font-semibold text-gray-400">Walk-In Customer</span>
+                                        > <span class="leading-none font-semibold text-gray-400">Retail Customer</span>
                                     </label>
                                 </Field>
                             </div>
                             <button type="button"
                                 @click.prevent="openCustomerSelect"
                                 class="flex items-center px-3 py-2 rounded bg-blue-100 text-blue-500 hover:bg-blue-200 transition-all ease-in-out duration-200"
-                                :class="values.walk_in_customer ? 'opacity-30 cursor-not-allowed' : ''"
-                                :disabled="values.walk_in_customer"
+                                :class="values.retail ? 'opacity-30 cursor-not-allowed' : ''"
+                                :disabled="values.retail"
                             >
                                 <div class="font-semibold text-xs mr-3">Select customer</div>
                                 <DuplicateIcon class="w-4 h-4" />
@@ -40,7 +40,7 @@
                         <div class="grid md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-2">
                             <FormGroup label="Customer Name" label-for="customerName" :error="errors[`customer_name`]"
                                 required class="md:col-span-2"
-                                v-show="!values.walk_in_customer"
+                                v-show="!values.retail"
                             >
                                 <Field
                                     id="customerName"
@@ -52,7 +52,7 @@
 
                             <FormGroup label="Customer Address" label-for="customerAddress"
                                 :error="errors[`customer_address`]"
-                                 v-show="!values.walk_in_customer"
+                                 v-show="!values.retail"
                             >
                                 <Field
                                     v-slot="{ field }"
@@ -94,7 +94,7 @@
 
                             <FormGroup label="Customer GSTIN" label-for="customerGstin"
                                 :error="errors[`customer_gstin`]" class="md:col-span-1"
-                                 v-show="!values.walk_in_customer"
+                                 v-show="!values.retail"
                             >
                                 <Field
                                     id="customerGstin"
@@ -106,7 +106,7 @@
 
                             <FormGroup label="Customer PAN" label-for="customerPan"
                                 :error="errors[`customer_pan`]" class="md:col-span-1"
-                                 v-show="!values.walk_in_customer"
+                                 v-show="!values.retail"
                             >
                                 <Field
                                     id="customerPan"
@@ -470,9 +470,9 @@ export default {
     data: () => {
         const schema = yup.object().shape({
             invoice_no: yup.string().required(),
-            walk_in_customer: yup.number().label("Walk-In Customer"),
-            customer_name: yup.lazy(() => yup.string().when(['walk_in_customer'], {
-                is: (walk_in_customer) => walk_in_customer != 1,
+            retail: yup.number().label("Retail Customer"),
+            customer_name: yup.lazy(() => yup.string().when(['retail'], {
+                is: (retail) => retail != 1,
                 then: yup.string().required().label("Customer Name").typeError('Customer name is required'),
                 otherwise: yup.string().nullable().label("Customer Name"),
             }).nullable()),
@@ -603,7 +603,7 @@ export default {
                     } else {
                         this.items.push({ id: Date.now(), })
                         this.date = new Date()
-                        this.$refs.invoiceForm.setFieldValue(`walk_in_customer`, 1);
+                        this.$refs.invoiceForm.setFieldValue(`retail`, 1);
                     }
 
                 }).catch((error) => { this.loading = false; console.log(error) })
@@ -712,7 +712,7 @@ export default {
             this.totalTaxable = this.editInvoice.taxable
             this.totalTax = this.editInvoice.tax
 
-            this.$refs.invoiceForm.setFieldValue(`walk_in_customer`, this.editInvoice.walk_in_customer);
+            this.$refs.invoiceForm.setFieldValue(`retail`, this.editInvoice.retail);
             this.$refs.invoiceForm.setFieldValue(`customer_name`, this.editInvoice.customer_name);
             this.$refs.invoiceForm.setFieldValue(`customer_address`, this.editInvoice.customer_address);
             this.$refs.invoiceForm.setFieldValue(`customer_gstin`, this.editInvoice.customer_gstin);

@@ -47,10 +47,10 @@ class Invoice extends Model
     {
         $types = [
             'all' => [0,1],
-            'walk_in' => [1],
+            'retail' => [1],
             'b2b' => [0]
         ];
-        return $query->whereIn('walk_in_customer', $types[$customer_type]);
+        return $query->whereIn('retail', $types[$customer_type]);
     }
 
     public function getAdditionalTaxInfoAttribute()

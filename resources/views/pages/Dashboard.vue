@@ -24,12 +24,23 @@
                     <span class="font-bold rounded-md bg-blue-50 text-blue-600 px-2">{{ moment(this.toDate).format('DD-MM-YYYY') }}</span>
                 </div>
 
-                <div class="flex items-center justify-between rounded-md text-blue-600 bg-blue-50 border border-blue-500">
-                    <div class="px-3 py-2 font-bold">
-                        Total number of invoices issued
-                    </div>
-                    <div class="w-32 px-3 py-2 text-center font-bold text-xl border-l border-blue-600">
-                        {{ reports.invoice_count }}
+                <div class="py-2 font-bold text-blue-600 text-sm">
+                    Total number of invoices issued
+                </div>
+                <div class="rounded-md text-blue-600 bg-blue-50 border border-blue-500">
+                    <div class="grid grid-cols-3 gap-4 text-left font-semibold text-sm text-center">
+                        <div class="px-3 py-2 border-r border-blue-500">
+                            <p>Retail:</p>
+                            <div class="text-2xl font-bold">{{ reports.invoice_counts.retail }}</div>
+                        </div>
+                        <div class="px-3 py-2 border-r border-blue-500">
+                            <p>B2B:</p>
+                            <div class="text-2xl font-bold">{{ reports.invoice_counts.b2b }}</div>
+                        </div>
+                        <div class="px-3 py-2">
+                            <p>Total:</p>
+                            <div class="text-2xl font-bold">{{ reports.invoice_counts.total }}</div>
+                        </div>
                     </div>
                 </div>
 

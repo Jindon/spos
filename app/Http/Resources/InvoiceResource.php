@@ -18,7 +18,7 @@ class InvoiceResource extends JsonResource
             'discount' => (float) $this->discount,
             'cgst' => (float) $this->cgst,
             'sgst' => (float) $this->sgst,
-            'walk_in_customer' => $this->walk_in_customer,
+            'retail' => $this->retail,
             'customer_name' => $this->customer_name,
             'customer_address' => $this->customer_address,
             'customer_gstin' => $this->customer_gstin,
