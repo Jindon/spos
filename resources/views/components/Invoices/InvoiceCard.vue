@@ -12,8 +12,8 @@
 
                 <div class="md:w-9/12 flex justify-between">
                     <div class="md:px-4 py-2 hover:border-r group-hover:border-blue-500 leading-none">
-                        <div v-if="invoice.walk_in_customer">
-                            <p class="text-lg font-semibold">Walk-In / Retail Customer</p>
+                        <div v-if="invoice.retail">
+                            <p class="text-lg font-semibold">Retail Customer</p>
                         </div>
                         <div v-else>
                             <p class="text-lg font-semibold">{{ invoice.customer_name }}</p>

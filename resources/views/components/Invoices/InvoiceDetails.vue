@@ -35,8 +35,8 @@
             <div class="flex justify-between border border-gray-200 border-b-0">
                 <div class="w-2/3 px-4 py-3 border-r border-gray-200">
                     <p class="text-sm font-semibold text-gray-700">Issued to</p>
-                    <div v-if="invoice.walk_in_customer">
-                        <p class="text-lg font-bold">Walk-In / Retail Customer</p>
+                    <div v-if="invoice.retail">
+                        <p class="text-lg font-bold">Retail Customer</p>
                     </div>
                     <div v-else>
                         <p class="text-lg font-bold">{{ invoice.customer_name }}</p>

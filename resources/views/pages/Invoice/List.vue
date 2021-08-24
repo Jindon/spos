@@ -24,7 +24,7 @@
                         <div class="text-xs font-semibold text-gray-600">Customer type</div>
                         <select v-model="customerType" class="form-control w-full">
                             <option value="all">All</option>
-                            <option value="walk_in">Walk-In</option>
+                            <option value="retail">Retail</option>
                             <option value="b2b">B2B</option>
                         </select>
                     </div>
