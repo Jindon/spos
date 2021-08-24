@@ -1,6 +1,6 @@
 <template>
-  <div v-if="invoice" class="p-2 min-h-full">
-      <InvoiceDetails :invoice="invoice"/>
+  <div v-if="invoice" class="p-2 min-h-full max-w-7xl m-auto">
+      <InvoiceDetails :invoice="invoice" :is-print="true" />
   </div>
 </template>
 
