@@ -16,6 +16,7 @@
                 <slot />
             </div>
         </div>
+         <ReloadPrompt />
     </div>
 </template>
 
@@ -23,10 +24,12 @@
 import { useRouter } from 'vue-router'
 import { XIcon, ArrowNarrowLeftIcon } from '@heroicons/vue/outline'
 import user from '@/scripts/store/modules/user'
+import ReloadPrompt from '@/views/components/ReloadPrompt.vue'
 export default {
     components: {
         ArrowNarrowLeftIcon,
         XIcon,
+        ReloadPrompt,
     },
 
     props: {

@@ -16,6 +16,7 @@
                 <slot />
             </div>
         </div>
+        <ReloadPrompt />
   </div>
 </template>
 
@@ -23,11 +24,13 @@
 import { ref } from 'vue'
 import { XIcon, MenuIcon } from '@heroicons/vue/outline'
 import SideNav from '@/views/components/SideNav.vue'
+import ReloadPrompt from '@/views/components/ReloadPrompt.vue'
 export default {
     components: {
         XIcon,
         MenuIcon,
         SideNav,
+        ReloadPrompt,
     },
 
     props: {
