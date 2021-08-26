@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="mb-32 w-full overflow-x-auto">
-                    <div style="min-width:78rem;">
+                    <div class="min-w-78">
                         <h3 class="font-bold text-xl text-gray-400 pb-4 mb-4 border-b border-gray-200">Invoice items</h3>
                         <div>
                             <table class="table-fixed" v-if="items.length">
