@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-
 const {
   offlineReady,
   needRefresh,
   updateServiceWorker,
 } = useRegisterSW()
-
 const close = async() => {
   offlineReady.value = false
   needRefresh.value = false
@@ -15,9 +13,9 @@ const close = async() => {
 
 <template>
   <div
-      v-if="offlineReady || needRefresh"
-      class="pwa-toast"
-      role="alert"
+    v-if="offlineReady || needRefresh"
+    class="pwa-toast"
+    role="alert"
   >
     <div class="message">
       <span v-if="offlineReady">
@@ -47,8 +45,7 @@ const close = async() => {
   border-radius: 4px;
   z-index: 1;
   text-align: left;
-  box-shadow: 3px 4px 5px 0 #8885;
-  background-color: white;
+  box-shadow: 3px 4px 5px 0px #8885;
 }
 .pwa-toast .message {
   margin-bottom: 8px;
