@@ -141,153 +141,155 @@
                     </div>
                 </div>
 
-                <div class="mb-32">
-                    <h3 class="font-bold text-xl text-gray-400 pb-4 mb-4 border-b border-gray-200">Invoice items</h3>
-                    <table class="table-fixed" v-if="items.length">
-                        <thead>
-                            <tr class="text-left border-b border-gray-100">
-                                <th class="w-1/24 py-1">#</th>
-                                <th class="w-6/24 px-2 py-1">Item name</th>
-                                <th class="w-2/24 px-2 py-1">Qty</th>
-                                <th class="w-3/24 px-2 py-1">Unit price</th>
-                                <th class="w-2/24 px-2 py-1">Tax%</th>
-                                <th class="w-1/24 px-2 py-1">Inclusive</th>
-                                <th class="w-2/24 px-2 py-1">Taxable</th>
-                                <th class="w-2/24 px-2 py-1">Tax</th>
-                                <th class="w-2/24 px-2 py-1">Total</th>
-                                <th class="w-1/24 px-2 py-1"><CogIcon class="w-5 h-5 text-blue-500" /></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(item, idx) in items" :key="item.id" class="border-b border-gray-100">
-                                <td class="py-2">
-                                    <div class="flex items-center justify-between">
-                                        <!-- <legend>{{ idx + 1 }}</legend> -->
-                                        <button type="button"
-                                            @click.prevent="openProductSelect(values, idx)"
-                                            class="p-2 rounded bg-blue-100 text-blue-500 hover:bg-blue-200 transition-all ease-in-out duration-200"
-                                        >
-                                            <DuplicateIcon class="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="p-2">
-                                    <Field
-                                        :id="`name_${idx}`"
-                                        :name="`items[${idx}].name`"
-                                        class="item-form"
-                                        :class="errors[`items[${idx}].name`] ? 'item-form--error' : ''"
-                                    />
-                                </td>
-                                <td class="p-2">
-                                    <Field
-                                        @input="setTotal(values, idx)"
-                                        :id="`quantity_${idx}`"
-                                        :name="`items[${idx}].quantity`"
-                                        type="number"
-                                        value="1"
-                                        min="1"
-                                        class="item-form"
-                                        :class="errors[`items[${idx}].quantity`] ? 'item-form--error' : ''"
-                                        :disabled="setDisabled(values, idx)"
-                                    />
-                                </td>
-                                <td class="p-2">
-                                    <Field
-                                        @input="setTotal(values, idx)"
-                                        :id="`unit_price_${idx}`"
-                                        :name="`items[${idx}].unit_price`"
-                                        type="number"
-                                        min="0"
-                                        value="0"
-                                        class="item-form"
-                                        :class="errors[`items[${idx}].unit_price`] ? 'item-form--error' : ''"
-                                        :disabled="setDisabled(values, idx)"
-                                    />
-                                </td>
-                                <td class="p-2">
-                                    <Field
-                                        @input="setTotal(values, idx)"
-                                        :id="`tax_${idx}`"
-                                        :name="`items[${idx}].tax`"
-                                        type="number"
-                                        min="0"
-                                        value="0"
-                                        class="item-form"
-                                        :class="errors[`items[${idx}].tax`] ? 'item-form--error' : ''"
-                                        :disabled="setDisabled(values, idx)"
-                                    />
-                                </td>
-                                <td class="p-2 text-center">
-                                    <Field
-                                        @change="setTotal(values, idx)"
-                                        v-slot="{field, value}"
-                                        :id="`inclusive_${idx}`"
-                                        :name="`items[${idx}].inclusive`"
-                                        type="checkbox"
-                                        :unchecked-value="0"
-                                        :value="1"
-                                    >
-                                        <input type="checkbox"
-                                            v-bind="field"
-                                            :value="1"
-                                            :name="`items[${idx}].inclusive`"
-                                            :id="`inclusive_${idx}`"
-                                            :checked="value"
-                                            class="w-5 h-5"
-                                        >
-                                    </Field>
-                                </td>
-                                <td class="p-2 hide-number-control">
-                                    <Field
-                                        :id="`taxable_amount_${idx}`"
-                                        :name="`items[${idx}].taxable_amount`"
-                                        type="number"
-                                        value="0"
-                                        class="item-form"
-                                        :disabled="true"
-                                    />
-                                </td>
-                                <td class="p-2 hide-number-control">
-                                    <Field
-                                        :id="`tax_amount_${idx}`"
-                                        :name="`items[${idx}].tax_amount`"
-                                        type="number"
-                                        value="0"
-                                        class="item-form"
-                                        :disabled="true"
-                                    />
-                                </td>
-                                <td class="p-2 hide-number-control">
-                                    <Field
-                                        :id="`total_${idx}`"
-                                        :name="`items[${idx}].total`"
-                                        class="item-form"
-                                        :disabled="true"
-                                    />
-                                </td>
-                                <td>
-                                    <div v-if="idx !== 0">
-                                        <button type="button" @click="remove(item)" class="p-2">
-                                            <XCircleIcon class="w-5 h-5 text-red-500" />
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="10">
-                                    <div class="flex justify-center">
-                                        <button type="button" @click="add" class="w-full flex justify-center items-center text-sm border-2 border-dashed border-gray-200 bg-white hover:bg-gray-100 hover:border-blue-500 transition-all ease-in-out duration-200 rounded-md px-4 py-3">
-                                            <PlusIcon class="w-4 h-4 mr-2" /><span class="font-semibold">Add item</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="mb-32 w-full overflow-x-auto">
+                    <div style="min-width:78rem;">
+                        <h3 class="font-bold text-xl text-gray-400 pb-4 mb-4 border-b border-gray-200">Invoice items</h3>
+                        <div>
+                            <table class="table-fixed" v-if="items.length">
+                                <thead>
+                                    <tr class="text-left border-b border-gray-100">
+                                        <th class="w-1/24 py-1">#</th>
+                                        <th class="w-6/24 px-2 py-1">Item name</th>
+                                        <th class="w-2/24 px-2 py-1">Qty</th>
+                                        <th class="w-3/24 px-2 py-1">Unit price</th>
+                                        <th class="w-2/24 px-2 py-1">Tax%</th>
+                                        <th class="w-1/24 px-2 py-1">Inclusive</th>
+                                        <th class="w-2/24 px-2 py-1">Taxable</th>
+                                        <th class="w-2/24 px-2 py-1">Tax</th>
+                                        <th class="w-2/24 px-2 py-1">Total</th>
+                                        <th class="w-1/24 px-2 py-1"><CogIcon class="w-5 h-5 text-blue-500" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item, idx) in items" :key="item.id" class="border-b border-gray-100">
+                                        <td class="py-2">
+                                            <div class="flex items-center justify-between">
+                                                <!-- <legend>{{ idx + 1 }}</legend> -->
+                                                <button type="button"
+                                                    @click.prevent="openProductSelect(values, idx)"
+                                                    class="p-2 rounded bg-blue-100 text-blue-500 hover:bg-blue-200 transition-all ease-in-out duration-200"
+                                                >
+                                                    <DuplicateIcon class="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td class="p-2">
+                                            <Field
+                                                :id="`name_${idx}`"
+                                                :name="`items[${idx}].name`"
+                                                class="item-form"
+                                                :class="errors[`items[${idx}].name`] ? 'item-form--error' : ''"
+                                            />
+                                        </td>
+                                        <td class="p-2">
+                                            <Field
+                                                @input="setTotal(values, idx)"
+                                                :id="`quantity_${idx}`"
+                                                :name="`items[${idx}].quantity`"
+                                                type="number"
+                                                value="1"
+                                                min="1"
+                                                class="item-form"
+                                                :class="errors[`items[${idx}].quantity`] ? 'item-form--error' : ''"
+                                                :disabled="setDisabled(values, idx)"
+                                            />
+                                        </td>
+                                        <td class="p-2">
+                                            <Field
+                                                @input="setTotal(values, idx)"
+                                                :id="`unit_price_${idx}`"
+                                                :name="`items[${idx}].unit_price`"
+                                                type="number"
+                                                min="0"
+                                                value="0"
+                                                class="item-form"
+                                                :class="errors[`items[${idx}].unit_price`] ? 'item-form--error' : ''"
+                                                :disabled="setDisabled(values, idx)"
+                                            />
+                                        </td>
+                                        <td class="p-2">
+                                            <Field
+                                                @input="setTotal(values, idx)"
+                                                :id="`tax_${idx}`"
+                                                :name="`items[${idx}].tax`"
+                                                type="number"
+                                                min="0"
+                                                value="0"
+                                                class="item-form"
+                                                :class="errors[`items[${idx}].tax`] ? 'item-form--error' : ''"
+                                                :disabled="setDisabled(values, idx)"
+                                            />
+                                        </td>
+                                        <td class="p-2 text-center">
+                                            <Field
+                                                @change="setTotal(values, idx)"
+                                                v-slot="{field, value}"
+                                                :id="`inclusive_${idx}`"
+                                                :name="`items[${idx}].inclusive`"
+                                                type="checkbox"
+                                                :unchecked-value="0"
+                                                :value="1"
+                                            >
+                                                <input type="checkbox"
+                                                    v-bind="field"
+                                                    :value="1"
+                                                    :name="`items[${idx}].inclusive`"
+                                                    :id="`inclusive_${idx}`"
+                                                    :checked="value"
+                                                    class="w-5 h-5"
+                                                >
+                                            </Field>
+                                        </td>
+                                        <td class="p-2 hide-number-control">
+                                            <Field
+                                                :id="`taxable_amount_${idx}`"
+                                                :name="`items[${idx}].taxable_amount`"
+                                                type="number"
+                                                value="0"
+                                                class="item-form"
+                                                :disabled="true"
+                                            />
+                                        </td>
+                                        <td class="p-2 hide-number-control">
+                                            <Field
+                                                :id="`tax_amount_${idx}`"
+                                                :name="`items[${idx}].tax_amount`"
+                                                type="number"
+                                                value="0"
+                                                class="item-form"
+                                                :disabled="true"
+                                            />
+                                        </td>
+                                        <td class="p-2 hide-number-control">
+                                            <Field
+                                                :id="`total_${idx}`"
+                                                :name="`items[${idx}].total`"
+                                                class="item-form"
+                                                :disabled="true"
+                                            />
+                                        </td>
+                                        <td>
+                                            <div v-if="idx !== 0">
+                                                <button type="button" @click="remove(item)" class="p-2">
+                                                    <XCircleIcon class="w-5 h-5 text-red-500" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="flex justify-center">
+                                                <button type="button" @click="add" class="w-full flex justify-center items-center text-sm border-2 border-dashed border-gray-200 bg-white hover:bg-gray-100 hover:border-blue-500 transition-all ease-in-out duration-200 rounded-md px-4 py-3">
+                                                    <PlusIcon class="w-4 h-4 mr-2" /><span class="font-semibold">Add item</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div>
-
+                        <div>
                             <div class="flex justify-end items-center">
                                 <div class="p-4 font-bold text-right">Discount</div>
                                 <div class="p-4">
@@ -318,6 +320,7 @@
                                     <p>₹{{ total }}</p>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
 
