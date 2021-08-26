@@ -77,15 +77,17 @@
                 </div>
             </div>
 
-            <div class="w-full px-4 md:px-0 pt-6 border-t border-gray-200 flex justify-between items-center">
+            <div class="w-full px-0 pt-6 border-t border-gray-200 flex justify-between md:items-center">
                 <div>
-                    <div v-if="editProductId">
-                        <button class="btn-danger" @click.prevent="handleDelete">Delete</button>
+                    <div v-if="editProductId" class="pr-3">
+                        <button class="btn-danger" @click.prevent="handleDelete">
+                            <TrashIcon class="w-4 h-4 md:hidden" /><span class="md:block hidden">Delete</span>
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <button @click.prevent="handleCancel" type="button" class="btn-secondary mr-4">Cancel</button>
-                    <button type="submit" class="btn-primary">{{ editProductId ? 'Update Product' : 'Create Product'}}</button>
+                <div class="flex">
+                    <button @click.prevent="handleCancel" type="button" class="btn-secondary mr-3">Cancel</button>
+                    <button type="submit" class="btn-primary">{{ editProductId ? 'Update' : 'Create'}}</button>
                 </div>
             </div>
         </Form>
@@ -100,6 +102,7 @@ import * as yup from 'yup';
 import axios from 'axios'
 import FormGroup from '@/views/components/FormGroup.vue'
 import Spin from '@/views/components/Spin.vue'
+import { TrashIcon } from '@heroicons/vue/outline'
 
 export default {
     props: {
@@ -113,6 +116,7 @@ export default {
         Form,
         ErrorMessage,
         Spin,
+        TrashIcon,
     },
 
     watch: {
