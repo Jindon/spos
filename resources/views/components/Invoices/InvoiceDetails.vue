@@ -12,7 +12,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <div style="min-width:54rem;">
+                <div class="min-w-54 print:min-w-full">
                     <div class="flex justify-between border border-gray-200 border-b-0">
                         <div class="w-2/3 px-4 py-3 border-r border-gray-200">
                             <h1 class="text-xl font-bold">{{ shop.name }}</h1>
