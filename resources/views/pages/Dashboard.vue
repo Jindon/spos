@@ -1,5 +1,5 @@
 <template>
-    <AppLayout max-width="max-w-2xl">
+    <AppLayout max-width="max-w-3xl">
         <template #header>
             <div class="flex flex-col md:flex-row justify-between md:items-center">
                 <h2 class="text-xl md:text-3xl font-bold leading-none">Dashboard</h2>
@@ -27,27 +27,27 @@
                 <div class="py-2 font-bold text-blue-600 text-sm">
                     Total number of invoices issued
                 </div>
-                <div class="rounded-md text-blue-600 bg-blue-50 border border-blue-500">
-                    <div class="grid grid-cols-3 gap-4 text-left font-semibold text-sm text-center">
-                        <div class="px-3 py-2 border-r border-blue-500">
+                <div class="rounded-md text-gray-600 bg-gray-50 border border-gray-200">
+                    <div class="grid grid-cols-3 text-left font-semibold text-sm text-center">
+                        <div class="px-3 py-2 border-r border-gray-200">
                             <p>Retail:</p>
-                            <div class="text-2xl font-bold">{{ reports.invoice_counts.retail }}</div>
+                            <div class="text-xl md:text-3xl font-bold">{{ reports.invoice_counts.retail }}</div>
                         </div>
-                        <div class="px-3 py-2 border-r border-blue-500">
+                        <div class="px-3 py-2 border-r border-gray-200">
                             <p>B2B:</p>
-                            <div class="text-2xl font-bold">{{ reports.invoice_counts.b2b }}</div>
+                            <div class="text-xl md:text-3xl font-bold">{{ reports.invoice_counts.b2b }}</div>
                         </div>
                         <div class="px-3 py-2">
                             <p>Total:</p>
-                            <div class="text-2xl font-bold">{{ reports.invoice_counts.total }}</div>
+                            <div class="text-xl md:text-3xl font-bold">{{ reports.invoice_counts.total }}</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6">
-                    <p class="text-xs font-bold text-blue-600 pb-2 border-b border-blue-500">Most sold items</p>
+                <div class="pt-6 overflow-x-auto">
+                    <p class="text-xs font-bold text-blue-600 pb-2 border-b border-gray-200">Most sold items</p>
                     <table class="table-fixed w-full">
-                        <thead class="text-left text-xs uppercase text-gray-600 border-b border-blue-300">
+                        <thead class="text-left text-xs uppercase text-gray-600 border-b border-gray-200">
                             <tr>
                                 <th class="w-1/12 px-2 py-1">#</th>
                                 <th class="w-5/12 px-2 py-1">Name</th>
@@ -81,10 +81,10 @@
                     </table>
                 </div>
 
-                <div class="pt-6">
-                    <p class="text-xs font-bold text-blue-600 pb-2 border-b border-blue-500">Top customers</p>
+                <div class="pt-6 overflow-x-auto">
+                    <p class="text-xs font-bold text-blue-600 pb-2 border-b border-gray-200">Top customers</p>
                     <table class="table-fixed w-full">
-                        <thead class="text-left text-xs uppercase text-gray-600 border-b border-blue-300">
+                        <thead class="text-left text-xs uppercase text-gray-600 border-b border-gray-200">
                             <tr>
                                 <th class="w-1/12 px-2 py-1">#</th>
                                 <th class="w-7/12 px-2 py-1">Customer name</th>
