@@ -3,7 +3,7 @@
         <template #header>
             <div class="flex flex-col md:flex-row justify-between md:items-center">
                 <h2 class="text-xl md:text-3xl font-bold leading-none">Dashboard</h2>
-                <div class="md:w-1/2 flex items-center justify-between space-x-2">
+                <div class="md:w-1/3 flex items-center justify-between space-x-2">
                     <div class="w-full md:w-36">
                         <div class="text-xs font-semibold text-gray-600">From date</div>
                         <datepicker v-model="fromDate" input-format="dd-MM-yyyy"/>
