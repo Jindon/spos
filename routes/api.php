@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
@@ -16,6 +17,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/states', StateController::class);
     Route::get('/shop', [ShopController::class, 'show']);
     Route::patch('/shop', [ShopController::class, 'save']);
+    Route::get('/settings', [SettingController::class, 'index']);
+    Route::patch('/settings', [SettingController::class, 'save']);
     Route::get('/invoice-count', [InvoiceController::class, 'invoiceCount']);
     Route::apiResource('/invoices', InvoiceController::class);
     Route::apiResource('/products', ProductController::class);

@@ -90,7 +90,7 @@
 
                     <div class="flex justify-between">
                         <div class="w-7/12 border-b border-l border-gray-200">
-                            <div class="px-4 py-2 border-b border-gray-200">
+                            <div class="px-4 py-2">
                                 <p class="text-sm text-gray-500 font-semibold mb-1">Additional tax info</p>
                                 <table class="table-fixed w-full">
                                     <thead>
@@ -116,7 +116,7 @@
                                 </table>
                             </div>
 
-                            <div class="px-4 py-2">
+                            <div v-if="settings.show_bank_details" class="px-4 py-2 border-t border-gray-200">
                                 <p class="text-sm text-gray-500 font-semibold mb-1">Bank details</p>
                                 <table class="table-fixed w-full">
                                     <tbody>
@@ -246,11 +246,13 @@ export default {
     setup() {
         const store = useStore()
         const shop = store.getters['user/shop']
+        const settings = store.getters['user/settings']
 
         return {
             moment,
             numWords,
             shop,
+            settings,
         }
     }
 }

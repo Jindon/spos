@@ -6,6 +6,7 @@ export default {
         authenticated: false,
         user: null,
         shop: null,
+        settings: null,
     }),
 
     getters: {
@@ -18,6 +19,9 @@ export default {
         shop (state) {
             return state.shop
         },
+        settings (state) {
+            return state.settings
+        }
     },
 
     mutations: {
@@ -30,6 +34,9 @@ export default {
         SET_SHOP (state, shop) {
             state.shop = shop
         },
+        SET_SETTINGS (state, settings) {
+            state.settings = settings
+        },
     },
 
     actions: {
@@ -41,10 +48,12 @@ export default {
                 commit('SET_AUTHENTICATED', true)
                 commit('SET_USER', response.data.user)
                 commit('SET_SHOP', response.data.shop)
+                commit('SET_SETTINGS', response.data.settings)
             }).catch(() => {
                 commit('SET_AUTHENTICATED', false)
                 commit('SET_USER', null)
                 commit('SET_SHOP', null)
+                commit('SET_SETTINGS', null)
             })
         },
 
