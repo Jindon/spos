@@ -15,4 +15,9 @@ class Shop extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function settings()
+    {
+        return $this->hasMany(Setting::class);
+    }
 }

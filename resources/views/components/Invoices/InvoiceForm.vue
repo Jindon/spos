@@ -580,9 +580,9 @@ export default {
         },
         handleCustomerSelect(customer) {
             this.$refs.invoiceForm.setFieldValue(`customer_name`, customer.name.toString());
-            this.$refs.invoiceForm.setFieldValue(`customer_address`, customer.address.toString());
-            this.$refs.invoiceForm.setFieldValue(`customer_gstin`, customer.gstin.toString());
-            this.$refs.invoiceForm.setFieldValue(`customer_pan`, customer.pan.toString());
+            this.$refs.invoiceForm.setFieldValue(`customer_address`, customer.address ? customer.address.toString() : null);
+            this.$refs.invoiceForm.setFieldValue(`customer_gstin`, customer.gstin ? customer.gstin.toString() : null);
+            this.$refs.invoiceForm.setFieldValue(`customer_pan`, customer.pan ? customer.pan.toString() : null);
             this.$refs.invoiceForm.setFieldValue(`state_id`, customer.state_id.toString());
             this.$nextTick(() => {
                 this.handleCustomerModalClose()
