@@ -621,14 +621,14 @@ export default {
                     this.createdInvoice = response.data.data
                     this.toast.success('Invoice updated successfully!')
                     this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
-                }).catch((e) => { this.loading = false; console.log(e) })
+                }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
             } else {
                 axios.post('/api/invoices', values).then((response) => {
                     this.loading = false
                     this.createdInvoice = response.data.data
                     this.toast.success('Invoice created successfully!')
                     this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
-                }).catch((e) => { this.loading = false; console.log(e) })
+                }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
             }
         },
         add() {

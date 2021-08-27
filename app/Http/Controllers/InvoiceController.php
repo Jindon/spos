@@ -6,6 +6,7 @@ use App\Actions\Invoice\SaveInvoice;
 use App\Http\Requests\InvoiceRequest;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
+use App\Support\InvoiceHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -13,14 +14,13 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class InvoiceController extends Controller
 {
-    public function invoiceCount(Request $request)
+    public function invoiceCount(Request $request, InvoiceHelper $invoiceHelper)
     {
         $month = Carbon::now()->month;
+        $shopId = auth()->user()->defaultShop()->id;
+
         return response()->json([
-            'count' => Invoice::whereMonth('invoice_date', $month)
-                ->where('shop_id', auth()->user()->defaultShop()->id)
-                ->whereMonth('invoice_date', Carbon::now())
-                ->count()
+            'count' => (int) $invoiceHelper->getLatestInvoiceCount($month, $shopId)
         ]);
     }
 
