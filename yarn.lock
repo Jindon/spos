@@ -1607,6 +1607,16 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
+filepond-plugin-file-validate-type@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-file-validate-type/-/filepond-plugin-file-validate-type-1.2.6.tgz#5a03e04fb8f70f0df37ff9a285d3d2343cdc55f2"
+  integrity sha512-3JFxpb4o5D4BssP/Drjn2GPpejg/QXzU4e3/Pq8IvIJuokHz95b6+RPYstQ+6ITKREYup0N8F/CO/OQfhVkUgg==
+
+filepond@^4.29.0:
+  version "4.29.0"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.29.0.tgz#3429baa6edcf242f26f70f31396bba4ff164f087"
+  integrity sha512-RB62AVNTpV1G4pDNoRXPZYkEbYp0vrJyTNLDDitwJ3V5u4B22f1Ywai4SVwZ+vecNnW3tB68XVXaB0VlQvHT7A==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
@@ -2802,6 +2812,11 @@ vue-debounce@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vue-debounce/-/vue-debounce-3.0.1.tgz#5975e37efdb5d9a15ffa7d206a85b4aa97f09f51"
   integrity sha512-UzE4KDcopDihw0I5TmdK7syyuhu5+iuRD+AXhrRL7Y5C5o2EOZYwDhUNOAP4Z050hPmIj5U8vhMcYzePCTMAJw==
+
+vue-filepond@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/vue-filepond/-/vue-filepond-7.0.0.tgz#49f17551be0b1b10f0b0671bce432662d3e22bb5"
+  integrity sha512-FUqJqwOxVsz5BMYeK0tSFUAo7JhpTx+TMRA5XkYAzA1HH3KnkUz5tzvjDH+Pc282DTH2BIZOJe435BwYxYuHWg==
 
 vue-final-modal@^3.4.0:
   version "3.4.0"

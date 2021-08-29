@@ -69,11 +69,9 @@ class InvoiceController extends Controller
         try {
             $invoice->invoiceItems()->delete();
             $invoice->delete();
-            return response()->json([
-                'message' => 'Invoice successfully deleted'
-            ]);
+            return $this->successResponse('Invoice successfully deleted');
         } catch (\Exception $exception) {
-            abort(400, $exception->getMessage());
+            return $this->failureResponse($exception->getMessage(), null, 400);
         }
     }
 }

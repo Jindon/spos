@@ -150,6 +150,7 @@ export default {
         },
         handleDeleted() {
             this.closeForm()
+            this.toast.success('Customer deleted successfully!')
             this.getCustomers()
         }
     },
