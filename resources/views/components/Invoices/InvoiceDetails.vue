@@ -2,12 +2,13 @@
     <Spin :spinning="loading">
         <div v-if="invoice" id="invoiceDetails">
             <div v-if="!isPrint" class="mb-4 print:hidden flex justify-between items-center">
-                <div>
-                    <button class="btn-primary-sm" @click="print">Print</button>
-                </div>
                 <div class="flex items-center space-x-2">
                     <button class="btn-secondary-sm" @click="edit">Edit</button>
                     <button class="btn-danger-sm" @click="destroy">Delete</button>
+                </div>
+
+                <div>
+                    <button class="btn-primary-sm" @click="print">Print</button>
                 </div>
             </div>
 
