@@ -24,9 +24,6 @@ class SettingController extends Controller
         if ($settings) {
             return new SettingResource($settings);
         }
-
-        return response()->json([
-            'message' => 'Unable to save settings!'
-        ], 400);
+        return $this->failureResponse('Unable to save settings!', null, 400);
     }
 }

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/settings', [SettingController::class, 'save']);
     Route::get('/invoice-count', [InvoiceController::class, 'invoiceCount']);
     Route::apiResource('/invoices', InvoiceController::class);
+    Route::post('/products/upload', [ProductController::class, 'upload']);
     Route::apiResource('/products', ProductController::class);
     Route::apiResource('/customers', CustomerController::class);
 });

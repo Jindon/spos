@@ -21,9 +21,6 @@ class ShopController extends Controller
         $shop = auth()->user()->defaultShop();
         $shop->update($data);
         $shop->load('state');
-        return response()->json([
-            'message' => 'Successfully saved',
-            'data' => $shop->fresh(),
-        ], 200);
+        return $this->successResponse('Successfully saved!', $shop->fresh());
     }
 }

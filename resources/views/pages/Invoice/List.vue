@@ -97,7 +97,7 @@ export default {
 
     data() {
         return {
-            fromDate: moment().startOf('month').toDate(),
+            fromDate: moment().subtract(1, 'month').toDate(),
             toDate: moment().toDate(),
             search: '',
             customerType: 'all',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TaxSummaryResource;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,7 +17,8 @@ class DashboardController extends Controller
         $report = [
             'most_sold_items' => $this->getMostSoldItems($shopId),
             'invoice_counts' => $this->getInvoiceCounts($shopId),
-            'top_customers' => $this->getTopCustomers($shopId)
+            'top_customers' => $this->getTopCustomers($shopId),
+            'tax_summary' => $this->taxSummary($shopId),
         ];
 
         return new JsonResource($report);
@@ -70,5 +72,24 @@ class DashboardController extends Controller
                 'retail' => $query1->where('retail', 1)->count(),
                 'b2b' => $query2->where('retail', '=', 0)->count(),
             ];
+    }
+
+    public function taxSummary($shopId)
+    {
+        $summary = QueryBuilder::for(Invoice::class)
+            ->allowedFilters([
+                AllowedFilter::scope('from_date'),
+                AllowedFilter::scope('to_date'),
+            ])
+            ->where('invoices.shop_id', $shopId)
+            ->join('invoice_items', 'invoice_items.invoice_id', 'invoices.id')
+            ->select('invoice_items.tax')
+            ->selectRaw("SUM(invoice_items.total) as sum_total")
+            ->selectRaw("SUM(invoice_items.taxable_amount) as taxable_total, SUM(invoice_items.tax_amount) as tax_total")
+            ->groupBy('invoice_items.tax')
+            ->take(5)
+            ->get();
+
+        return TaxSummaryResource::collection($summary);
     }
 }

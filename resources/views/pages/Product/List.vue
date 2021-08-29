@@ -1,5 +1,5 @@
 <template>
-    <AppLayout maxWidth="max-w-2xl">
+    <AppLayout maxWidth="max-w-3xl">
         <template #header>
             <div class="flex flex-col md:flex-row justify-between md:items-center">
                 <h2 class="text-xl md:text-3xl font-bold leading-none">Products</h2>
@@ -10,9 +10,12 @@
                             v-debounce:350ms="updateSearch"
                         >
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 space-x-2">
                         <button @click.prevent="openAddModal" class="btn-primary">
                             <PlusIcon class="w-4 h-4" />
+                        </button>
+                        <button @click.prevent="openUploadModal" class="btn-secondary">
+                            <UploadIcon class="w-4 h-4" />
                         </button>
                     </div>
                 </div>
@@ -51,18 +54,36 @@
                     </div>
                 </Modal>
             </div>
+            <div>
+                <Modal
+                    v-model="showUploadForm"
+                    @cancel="closeUploadForm"
+                    class="md:ml-48"
+                >
+                    <div class="px-4">
+                        <p class="text-lg font-bold">Bulk upload products</p>
+                    </div>
+                    <div class="px-4 w-full" >
+                        <ProductUploadForm
+                            @uploaded="handleUploaded"
+                            @cancel="closeUploadForm"
+                        />
+                    </div>
+                </Modal>
+            </div>
         </Spin>
     </AppLayout>
 </template>
 
 <script>
 import axios from 'axios'
-import { PlusIcon } from '@heroicons/vue/outline'
+import { PlusIcon, UploadIcon } from '@heroicons/vue/outline'
 import { useToast } from "vue-toastification"
 import AppLayout from '@/views/layouts/AppLayout.vue'
 import Spin from '@/views/components/Spin.vue'
 import ProductCard from '@/views/components/Products/ProductCard.vue'
 import ProductForm from '@/views/components/Products/ProductForm.vue'
+import ProductUploadForm from '@/views/components/Products/ProductUploadForm.vue'
 import Pagination from '@/views/components/Pagination.vue'
 import Modal from '@/views/components/Modal.vue'
 
@@ -72,8 +93,10 @@ export default {
         AppLayout,
         Modal,
         PlusIcon,
+        UploadIcon,
         ProductCard,
         ProductForm,
+        ProductUploadForm,
         Spin,
         Pagination,
     },
@@ -91,6 +114,7 @@ export default {
             loading: false,
             selectedProductId: null,
             showForm: false,
+            showUploadForm: false,
             products: [],
             meta: {},
             currentPage: 1,
@@ -129,21 +153,33 @@ export default {
             this.showForm = true
             this.selectedProductId = null
         },
+        openUploadModal() {
+            this.showUploadForm = true
+        },
         selectProduct(product) {
             this.showForm = true
             this.selectedProductId = product
         },
         closeForm() {
-            this.showForm = false,
+            this.showForm = false
             this.selectedProductId = null
+        },
+        closeUploadForm() {
+            this.showUploadForm = false
         },
         handleSaved() {
             this.closeForm()
             this.toast.success('Product saved successfully!')
             this.getProducts()
         },
+        handleUploaded() {
+            this.closeUploadForm()
+            this.toast.success('Products uploaded successfully!')
+            this.getProducts()
+        },
         handleDeleted() {
             this.closeForm()
+            this.toast.success('Products deleted successfully!')
             this.getProducts()
         }
     },
