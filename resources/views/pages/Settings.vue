@@ -10,17 +10,13 @@
             </div>
             <hr class="mb-6 border-t border-gray-100" style="margin-top: -1px;">
 
-            <transition name="fade">
                 <div v-if="currentTab === 'general'">
                     <GeneralSettings />
                 </div>
-            </transition>
 
-            <transition name="fade">
                 <div v-if="currentTab === 'business'">
                     <BusinessSettings />
                 </div>
-            </transition>
         </div>
     </AppLayout>
 </template>
