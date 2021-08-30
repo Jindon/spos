@@ -26,15 +26,15 @@
 
                 <InvoiceSummary :data="reports.invoice_counts" />
 
-                <div class="pt-6 overflow-x-auto">
+                <div class="pt-6">
                     <TaxSummary :data="reports.tax_summary" />
                 </div>
 
-                <div class="pt-6 overflow-x-auto">
+                <div class="pt-6">
                     <MostSold :data="reports.most_sold_items" />
                 </div>
 
-                <div class="pt-6 overflow-x-auto">
+                <div class="pt-6">
                     <TopCustomers :data="reports.top_customers" />
                 </div>
             </div>

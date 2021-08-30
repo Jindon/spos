@@ -157,7 +157,7 @@
                                         <th class="w-2/24 px-2 py-1">Taxable</th>
                                         <th class="w-2/24 px-2 py-1">Tax</th>
                                         <th class="w-2/24 px-2 py-1">Total</th>
-                                        <th class="w-1/24 px-2 py-1"><CogIcon class="w-5 h-5 text-blue-500" /></th>
+                                        <th class="w-1/24 px-2 py-1"><CogIcon class="w-5 h-5 text-gray-400" /></th>
                                     </tr>
                                 </thead>
                                 <tbody>

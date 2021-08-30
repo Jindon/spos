@@ -1,14 +1,15 @@
 <template>
     <div>
-        <p class="text-xs font-bold text-blue-600 pb-2 border-b border-gray-200">Most sold items</p>
+        <p class="text-xs font-bold text-blue-600 mb-2">Most sold items</p>
+        <div class="border border-gray-200 rounded-md overflow-x-auto">
             <table class="table-fixed w-full">
                 <thead class="text-left text-xs uppercase text-gray-600 border-b border-gray-200">
                     <tr>
                         <th class="w-1/12 px-2 py-1">#</th>
                         <th class="w-5/12 px-2 py-1">Name</th>
                         <th class="w-2/12 px-2 py-1">Tax%</th>
-                        <th class="w-3/12 px-2 py-1">Sold</th>
-                        <th class="w-1/12 px-2 py-1">Qty</th>
+                        <th class="w-2/12 px-2 py-1">Sold</th>
+                        <th class="w-2/12 px-2 py-1">Qty</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                     </template>
                 </tbody>
             </table>
+        </div>
     </div>
 </template>
 
