@@ -10,12 +10,12 @@
                         class="w-5 h-5"
                     >
                 </div>
-                <label for="showBankDetails" class="flex-1">
+                <div class="flex-1">
                     <div>
                         <p class="text-lg font-bold">Show bank details in invoice</p>
                         <p class="text-sm">Uncheck the checkbox if you want the bank details displayed on the invoices.</p>
                     </div>
-                </label>
+                </div>
             </div>
 
             <div class="flex items-center">
@@ -27,13 +27,13 @@
                         class="w-5 h-5"
                     >
                 </div>
-                <label for="saveCustomers" class="flex-1">
+                <div class="flex-1">
                     <div>
                         <p class="text-lg font-bold">Save customers on invoice creation</p>
                         <p class="text-sm">Check this if you want customer with unique GSTIN to be saved automatically during invoice creation</p>
                     </div>
                     <p class="text-sm text-red-500">Customer won't be saved automatically if there is no GSTIN provided for the customer</p>
-                </label>
+                </div>
 
             </div>
         </div>
@@ -78,7 +78,6 @@ export default {
                 show_bank_details: this.showBankDetails,
              }).then((response) => {
                 this.loading = false
-                this.toast.success('Settings saved successfully!')
                 this.store.commit('user/SET_SETTINGS', response.data.data)
             }).catch((error) => { this.loading = false; console.log(error) })
         }
