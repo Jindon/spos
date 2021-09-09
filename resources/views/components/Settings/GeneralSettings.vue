@@ -13,7 +13,7 @@
                 <div class="flex-1">
                     <div>
                         <p class="text-lg font-bold">Show bank details in invoice</p>
-                        <p class="text-sm">Uncheck the checkbox if you want the bank details displayed on the invoices.</p>
+                        <p class="text-sm">Uncheck the checkbox if you want to hide bank details in invoices.</p>
                     </div>
                 </div>
             </div>
