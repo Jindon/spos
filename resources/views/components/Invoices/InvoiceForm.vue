@@ -135,7 +135,12 @@
                             <FormGroup label="Invoice date" label-for="invoiceDate" :error="errors[`date`]"
                                 required class="md:col-span-2"
                             >
-                                <datepicker v-model="date" input-format="dd-MM-yyyy"/>
+                                <datepicker
+                                    :lowerLimit="fromDate"
+                                    :upperLimit="toDate"
+                                    v-model="date"
+                                    input-format="dd-MM-yyyy"
+                                />
                             </FormGroup>
                         </div>
                     </div>
@@ -521,6 +526,8 @@ export default {
             schema,
             states: [],
             date: null,
+            toDate: moment().endOf('month').toDate(),
+            fromDate: moment().startOf('year').toDate(),
             invoiceCount: '',
             total: 0,
             totalTaxable: 0,
