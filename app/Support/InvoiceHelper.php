@@ -9,9 +9,8 @@ class InvoiceHelper
 {
     public function getLatestInvoiceCount($month, $shopId)
     {
-        $latestInvoice = Invoice::whereMonth('invoice_date', $month)
+        $latestInvoice = Invoice::whereMonth('created_at', $month)
             ->where('shop_id', $shopId)
-            ->whereMonth('created_at', Carbon::now())
             ->latest()->first();
 
         if (!$latestInvoice) {
