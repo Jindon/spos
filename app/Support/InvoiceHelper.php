@@ -11,7 +11,7 @@ class InvoiceHelper
     {
         $latestInvoice = Invoice::whereMonth('invoice_date', $month)
             ->where('shop_id', $shopId)
-            ->whereMonth('invoice_date', Carbon::now())
+            ->whereMonth('created_at', Carbon::now())
             ->latest()->first();
 
         if (!$latestInvoice) {
