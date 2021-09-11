@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Setting;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class SaveInvoice
 {
@@ -61,6 +62,12 @@ class SaveInvoice
             $invoiceData['customer_address'] = null;
             $invoiceData['customer_gstin'] = null;
             $invoiceData['customer_pan'] = null;
+        }
+
+        if ($itemsCollection->sum('total') - (float) $attributes['discount'] <= 0) {
+            throw ValidationException::withMessages([
+                'discount' => 'Discount cannot be greater than total taxable amount'
+            ]);
         }
 
         return array_merge($invoiceData, [
