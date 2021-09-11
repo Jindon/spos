@@ -475,7 +475,7 @@ export default {
         },
         searchCustomer: function (val) {
             this.getCustomers()
-        }
+        },
     },
 
     data: () => {
@@ -625,20 +625,25 @@ export default {
         onSubmit(values) {
             this.loading = true
             values.invoice_date = moment(this.date).format('YYYY-MM-DD')
-            if(this.editInvoice) {
-                axios.patch(`/api/invoices/${this.editInvoice.id}`, values).then((response) => {
-                    this.loading = false
-                    this.createdInvoice = response.data.data
-                    this.toast.success('Invoice updated successfully!')
-                    this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
-                }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
+            if(this.totalTaxable > values.discount) {
+                if(this.editInvoice) {
+                    axios.patch(`/api/invoices/${this.editInvoice.id}`, values).then((response) => {
+                        this.loading = false
+                        this.createdInvoice = response.data.data
+                        this.toast.success('Invoice updated successfully!')
+                        this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
+                    }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
+                } else {
+                    axios.post('/api/invoices', values).then((response) => {
+                        this.loading = false
+                        this.createdInvoice = response.data.data
+                        this.toast.success('Invoice created successfully!')
+                        this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
+                    }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
+                }
             } else {
-                axios.post('/api/invoices', values).then((response) => {
-                    this.loading = false
-                    this.createdInvoice = response.data.data
-                    this.toast.success('Invoice created successfully!')
-                    this.$router.push({ name: 'invoices.list', params: { createdInvoiceId: this.createdInvoice.id } })
-                }).catch((e) => { this.loading = false; console.log(e.response.data.errors) })
+                this.loading = false
+                alert('Discount is bigger than the total taxable amount. Please change it to save invoice!')
             }
         },
         add() {
