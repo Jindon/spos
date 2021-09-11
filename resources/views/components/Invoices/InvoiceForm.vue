@@ -380,8 +380,8 @@
                 @cancel="handleCustomerModalClose"
             >
                 <div class="px-4">
-                    <p class="text-lg font-bold">Select a product</p>
-                    <p class="text-xs font-semibold text-gray-500">Use the search if you dont see the product in the list</p>
+                    <p class="text-lg font-bold">Select a customer</p>
+                    <p class="text-xs font-semibold text-gray-500">Use the search if you dont see the customer in the list</p>
                 </div>
                 <div class="px-4 py-3">
                     <div class="text-xs font-semibold text-blue-600 mb-1">Search customers</div>
@@ -472,6 +472,9 @@ export default {
     watch: {
         search: function (val) {
             this.getProducts()
+        },
+        searchCustomer: function (val) {
+            this.getCustomers()
         }
     },
 
